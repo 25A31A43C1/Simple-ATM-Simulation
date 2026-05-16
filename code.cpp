@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+class ATM {
+private:
+    int pin = 1234;
+    double balance = 5000;
+
+public:
+    void start() {
+        int enteredPin;
+
+        cout << "Enter PIN: ";
+        cin >> enteredPin;
+
+        if (enteredPin != pin) {
+            cout << "Incorrect PIN\n";
+            return;
+        }
+
+        int choice;
+
+        do {
+            cout << "\n1. Check Balance\n";
+            cout << "2. Deposit\n";
+            cout << "3. Withdraw\n";
+            cout << "4. Exit\n";
+            cout << "Enter choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                cout << "Balance: " << balance << endl;
+            }
+            else if (choice == 2) {
+                double amount;
+                cout << "Enter deposit amount: ";
+                cin >> amount;
+                balance += amount;
+                cout << "Deposit successful\n";
+            }
+            else if (choice == 3) {
+                double amount;
+                cout << "Enter withdrawal amount: ";
+                cin >> amount;
+
+                if (amount > balance) {
+                    cout << "Insufficient balance\n";
+                } else {
+                    balance -= amount;
+                    cout << "Withdrawal successful\n";
+                }
+            }
+            else if (choice == 4) {
+                cout << "Thank you\n";
+            }
+            else {
+                cout << "Invalid choice\n";
+            }
+
+        } while (choice != 4);
+    }
+};
+
+int main() {
+    ATM atm;
+    atm.start();
+    return 0;
+}
